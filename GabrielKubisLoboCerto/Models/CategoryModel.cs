@@ -16,5 +16,6 @@ namespace GabrielKubisLoboCerto.Models
     public class CategoryAPIModel : APIModel
     {
         public Category Result { get; set; }
+
     }
 }
