@@ -1,0 +1,19 @@
+﻿@model Models.Registers.Product
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Viewing data of a Product";
+}
+<div class="panel panel-primary">
+    <div class="panel-body">
+        @Html.Partial("~/Views/Products/_PartialDetailsContentPanel.cshtml", Model)
+    </div>
+</div>
+@section ScriptPage {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liProducts').addClass("active");
+        });
+    </script>
+}
