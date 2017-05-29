@@ -12,6 +12,7 @@ namespace Persistence.DAL.Registers
    public class SupplierDAL
     {
         private EFContext context = new EFContext();
+        public Supplier find(long id) {return  context.Suppliers.Where(f => f.SupplierId == id).Include("Products.Category").First(); }
         public IQueryable<Supplier> getSuppliersbyName() { return context.Suppliers.OrderBy(b => b.Name); }
         public Supplier getSupplierById(long id) { return context.Suppliers.Where(p => p.SupplierId == id).First(); }
         public void InsertSupplier(Supplier supplier) { if (supplier.SupplierId == null) { context.Suppliers.Add(supplier); } else { context.Entry(supplier).State = EntityState.Modified; } context.SaveChanges(); }

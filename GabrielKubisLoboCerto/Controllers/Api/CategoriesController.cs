@@ -1,4 +1,5 @@
-﻿using Models.Tables;
+﻿using GabrielKubisLoboCerto.Models;
+using Models.Tables;
 using Service.Tables;
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,46 @@ namespace GabrielKubisLoboCerto.Controllers.Api
         CategoryService categoryService = new CategoryService();
 
         // GET: api/Categories
-        public IQueryable<Category> Get()
+        public CategoryListAPIModel Get()
         {
-            return categoryService.getCategoriesByName();
+            var apiModel = new CategoryListAPIModel();
+
+            try
+            {
+                apiModel.Result = categoryService.get();
+            }
+            catch (System.Exception)
+            {
+                apiModel.Message = "!OK";
+            }
+            return apiModel;
         }
 
         // GET: api/Categories/5
-        public Category Get(int id)
+        public CategoryAPIModel Get(long? id)
         {
-            return categoryService.getCategorytById(id); ;
+            var apiModel = new CategoryAPIModel();
+
+            try
+            {
+                if (id == null)
+                {
+                    apiModel.Message = "!OK";
+                }
+                else
+                {
+                    // criar método no servico da categoria 
+                    apiModel.Result = categoryService.getCategorytById(id);
+                }
+
+            }
+            catch (System.Exception)
+            {
+                apiModel.Message = "!OK";
+            }
+            return apiModel;
+
+
         }
 
         // POST: api/Categories

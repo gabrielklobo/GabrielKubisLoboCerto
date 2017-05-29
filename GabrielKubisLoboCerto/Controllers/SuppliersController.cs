@@ -46,10 +46,10 @@ namespace GabrielKubisLoboCerto.Controllers
         }
 
         // GET: Supplier/Edit
-        public ActionResult Edit(long? id)
+        public ActionResult Edit(long id)
         {
 
-            PopularViewBag(SupplierService.getSuppliertById((long)id));
+            PopularViewBag(SupplierService.find(id));
             return getViewByID(id);
         }
 
@@ -98,7 +98,7 @@ namespace GabrielKubisLoboCerto.Controllers
         {
             if (id == null)
             { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
-            Supplier Supplier = SupplierService.getSuppliertById((long)id);
+            Supplier Supplier = SupplierService.find((long)id);
             if (Supplier == null) { return HttpNotFound(); }
             return View(Supplier);
         }

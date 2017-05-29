@@ -13,6 +13,10 @@ namespace Persistence.DAL.Registers
     public class ProductDAL
     {
         private EFContext context = new EFContext();
+        public IQueryable<Product> getByCategory(long? categogyID)
+        {
+            return context.Products.Where(p => p.CategoryId.HasValue && p.CategoryId.Value == categogyID);
+        }
         public IQueryable<Product> getProductsByName() { return context.Products.Include(c => c.Category).Include(f => f.Supplier).OrderBy(n => n.Name); }
         public Product getProductById(long id) { return context.Products.Where(p => p.ProductId == id).Include(c => c.Category).Include(f => f.Supplier).First(); }
         public void InsertProduct(Product product) { if (product.ProductId == null) { context.Products.Add(product); } else { context.Entry(product).State = EntityState.Modified; } context.SaveChanges(); }

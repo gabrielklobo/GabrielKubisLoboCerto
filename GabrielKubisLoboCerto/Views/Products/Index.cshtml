@@ -20,9 +20,6 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.ProductId)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th>Category</th>
@@ -33,9 +30,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductId)
-                        </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
@@ -62,7 +57,7 @@
 @section styles{
     <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet">}
 @section ScriptPage {
-    <script src=" @Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
+    <script src= "@Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
     <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {

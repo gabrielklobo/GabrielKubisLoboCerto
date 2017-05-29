@@ -12,6 +12,7 @@ using Service.Tables;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using GabrielKubisLoboCerto.Models;
 
 namespace GabrielKubisLoboCerto.Controllers
 {
@@ -47,14 +48,14 @@ namespace GabrielKubisLoboCerto.Controllers
 
         public async Task<ActionResult> IndexApi()
         {
-            var list = new List<Category>();
+            var apiModel = new CategoryListAPIModel();
             var resp = await getFromAPI(null, response =>
             {
                 var result = response.Content.ReadAsStringAsync().Result;
-                list = JsonConvert.DeserializeObject<List<Category>>(result);
+                apiModel = JsonConvert.DeserializeObject<CategoryListAPIModel>(result);
             });
 
-            return View(list);
+            return View(apiModel);
         }
 
         //GET:Category/Index

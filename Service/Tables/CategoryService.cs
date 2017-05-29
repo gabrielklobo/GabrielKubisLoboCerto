@@ -12,10 +12,11 @@ namespace Service.Tables
     {
 
         private CategoryDAL categoryDAL = new CategoryDAL();
+        public IQueryable<Category> get() { return categoryDAL.get(); }
         public IQueryable<Category> getCategoriesByName() { return categoryDAL.getCategoriesbyName(); }
-        public Category getCategorytById(long id) { return categoryDAL.getCategorytById(id); }
+        public Category getCategorytById(long? id) { return categoryDAL.getCategorytById(id); }
         public void InsertCategory(Category category) { categoryDAL.InsertCategory(category); }
-        public Category deletCategoryById(long id) { return categoryDAL.deletCategoryById(id); }
+        public Category deletCategoryById(long? id) { return categoryDAL.deletCategoryById(id); }
 
     }
 }
